@@ -16,3 +16,22 @@ function dropdown(){
     )
   }
   dropdown();
+
+
+//build metadata
+function metadata(sampleid){
+    d3.json("samples.json").then((sampledata)=>{
+        var metaData = sampledata.metadata;
+        var dataArray = metaData.filter(row=>row.id==sampleid);
+        console.log(dataArray);
+        var mainData = dataArray[0];
+        var demoDisplay = d3.select("#sample-metadata");
+        demoDisplay.html("");
+        Object.entries(mainData).forEach(([key,value])=>{
+            demoDisplay.append("h6").text(`${key} ${value}`);
+  
+        })
+  })
+  }
+
+
